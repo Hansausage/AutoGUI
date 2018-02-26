@@ -36,20 +36,22 @@ JLabel label;
 	public String getFile() throws IOException{
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				f = new File("/home/gabe/auto/" + filename.getText() + ".txt");
+				f = new File("/Users/gwarfield/auto/" + filename.getText() + ".txt");
 				try {
 					f.createNewFile();
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
 				if(f.exists()) {
 					label.setText(f.getAbsolutePath() + " Created");
+					label.setVisible(true);
+				}
+			  } catch(IOException e1) {
+					label.setText("Failed to create file: " + e1.getMessage());
 					label.setVisible(true);
 				}
 			}
 		});
 		return f.getAbsolutePath();
 	}
+
 	
 	public void writeFile(String file) throws IOException {
 		write = new PrintWriter(file, "utf-8");
